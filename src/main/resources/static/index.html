@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resolve | Complaint Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="#top"><span class="brand-mark">R</span>Resolve</a>
+  <p class="brand-sub">Civic case registry</p>
+  <nav>
+    <a class="active" href="#dashboard">Dashboard</a>
+    <a href="#complaints">Complaints</a>
+    <a href="#new-complaint">New complaint</a>
+    <a href="#departments">Departments</a>
+    <a href="/admin-login.html">Admin workspace</a>
+  </nav>
+  <p class="sidebar-note">In-memory demo instance<br><small>All records reset on restart</small></p>
+</aside>
+
+<main id="top">
+  <header>
+    <div>
+      <h1>Welcome back</h1>
+      <p class="muted">Track, file, and manage civic complaints in one register.</p>
+    </div>
+    <a class="primary" href="/login.html">Sign in</a>
+  </header>
+
+  <section id="dashboard" class="summary-grid">
+    <article><p>Total complaints</p><strong id="totalCount">—</strong><span>All submitted requests</span></article>
+    <article><p>Pending</p><strong id="pendingCount">—</strong><span>Waiting for assignment</span></article>
+    <article><p>In progress</p><strong id="progressCount">—</strong><span>Being handled now</span></article>
+    <article><p>Resolved</p><strong id="resolvedCount">—</strong><span>Completed complaints</span></article>
+  </section>
+
+  <section id="complaints" class="panel">
+    <div class="section-heading">
+      <div>
+        <h2>Recent complaints</h2>
+        <p class="muted">The case register, most recent activity first.</p>
+      </div>
+      <select id="statusFilter" onchange="loadComplaints()">
+        <option value="">All statuses</option>
+        <option>PENDING</option>
+        <option>ASSIGNED</option>
+        <option>IN_PROGRESS</option>
+        <option>RESOLVED</option>
+        <option>REJECTED</option>
+        <option>CLOSED</option>
+      </select>
+    </div>
+    <p id="message" class="message" aria-live="polite"></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Case</th><th>Complaint</th><th>Category</th><th>Status</th><th>Department</th></tr></thead>
+        <tbody id="complaintRows"><tr><td colspan="5">Loading complaints…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="new-complaint" class="two-col">
+    <div class="panel">
+      <h2>Create a complaint</h2>
+      <p class="muted">Provide clear details so the department can help quickly.</p>
+      <form id="complaintForm">
+        <label>Complaint title<input id="title" required maxlength="100" placeholder="e.g. Street light not working"></label>
+        <label>Choose a department<select id="departmentId" required><option value="">Loading departments…</option></select></label>
+        <label>Description<textarea id="description" required maxlength="1000" placeholder="Describe the problem and location."></textarea></label>
+
+        <button class="primary" type="submit">Submit complaint</button>
+      </form>
+    </div>
+    <div id="departments" class="panel">
+      <h2>Departments</h2>
+      <p class="muted">Who handles what across the city.</p>
+      <div id="departmentList" class="department-list">Loading departments…</div>
+    </div>
+  </section>
+
+</main>
+<script src="/app.js"></script>
+</body>
+</html>
