@@ -15,7 +15,7 @@ async function loadComplaints() {
   const status = document.querySelector('#statusFilter').value;
   try {
     const response = await fetch(`${api}/complaints${status ? `?status=${encodeURIComponent(status)}` : ''}`);
-    if (response.status === 401) { location.href = '/login.html'; return; }
+    if (response.status === 401) { return; }
     if (!response.ok) throw new Error('Could not load complaints.');
 
     const complaints = await response.json();
@@ -34,7 +34,7 @@ async function loadComplaints() {
 async function loadDepartments() {
   try {
     const response = await fetch(`${api}/departments`);
-    if (response.status === 401) { location.href = '/login.html'; return; }
+    if (response.status === 401) { return; }
     if (!response.ok) throw new Error();
 
     departments = await response.json();

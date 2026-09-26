@@ -35,7 +35,9 @@ public class SecurityConfig {
     @Bean public SecurityFilterChain filterChain(HttpSecurity http, DaoAuthenticationProvider provider) throws Exception {
         return http.csrf(csrf -> csrf.disable()).authenticationProvider(provider).authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/index.html", "/login.html", "/admin-login.html", "/styles.css", "/app.js", "/admin.js", "/login.js", "/api/auth/login", "/api/auth/logout", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/departments/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/api/departments/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/complaints/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/complaints").permitAll()
                 .requestMatchers("/admin.html", "/api/users/**", "/api/departments/**", "/api/complaints/*/assign").hasRole("ADMIN")
                 .requestMatchers("/api/complaints/*/status").hasAnyRole("OFFICER", "ADMIN")
                 .anyRequest().authenticated()).build();
