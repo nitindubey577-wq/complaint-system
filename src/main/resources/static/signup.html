@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resolve | Sign up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main style="margin:auto;max-width:560px;padding-top:70px">
+  <section class="panel">
+    <p class="eyebrow">CITIZEN REGISTRATION</p>
+    <h1>Create an account</h1>
+    <p class="muted">Sign up to view recent complaints, track case activity, and access your dashboard.</p>
+    <p id="message" class="message"></p>
+    <form id="signupForm">
+      <label>Full name<input id="name" type="text" required placeholder="e.g. John Doe"></label>
+      <label>Email address<input id="email" type="email" required placeholder="e.g. john@example.com"></label>
+      <label>Phone number (optional)<input id="phone" type="tel" placeholder="e.g. 9876543210"></label>
+      <label>Password<input id="password" type="password" required placeholder="Choose a password (min 6 characters)"></label>
+      <button class="primary" type="submit">Sign up</button>
+      <div style="margin-top:14px;display:flex;justify-content:space-between;font-size:13.5px">
+        <a href="/login.html">Already have an account? Sign in</a>
+        <a href="/">Back to home</a>
+      </div>
+    </form>
+  </section>
+</main>
+<script src="/signup.js"></script>
+</body>
+</html>

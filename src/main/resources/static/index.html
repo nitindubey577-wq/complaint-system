@@ -26,10 +26,13 @@
 <main id="top">
   <header>
     <div>
-      <h1>Welcome back</h1>
+      <h1 id="welcomeTitle">Welcome</h1>
       <p class="muted">Track, file, and manage civic complaints in one register.</p>
     </div>
-    <a class="primary" href="/login.html">Sign in</a>
+    <div class="header-actions" id="headerActions">
+      <a class="secondary" href="/signup.html">Sign up</a>
+      <a class="primary" href="/login.html">Sign in</a>
+    </div>
   </header>
 
   <section id="dashboard" class="summary-grid">
@@ -58,10 +61,18 @@
     <p id="message" class="message" aria-live="polite"></p>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Case</th><th>Complaint</th><th>Category</th><th>Status</th><th>Department</th></tr></thead>
-        <tbody id="complaintRows"><tr><td colspan="5">Loading complaints…</td></tr></tbody>
+        <thead><tr><th>Case</th><th>Complaint</th><th>Location</th><th>Status</th><th>Department</th><th></th></tr></thead>
+        <tbody id="complaintRows"><tr><td colspan="6" class="login-prompt"><a href="/login.html">Sign in</a> or <a href="/signup.html">Sign up</a> to view recent complaints.</td></tr></tbody>
       </table>
     </div>
+  </section>
+
+  <section id="complaintDetails" class="panel complaint-details" hidden>
+    <div class="section-heading"><div><h2 id="detailTitle">Complaint details</h2><p id="detailMeta" class="muted"></p></div><button id="closeDetailsButton" class="small-button" type="button">Close</button></div>
+    <p id="detailDescription"></p>
+    <p><strong>Location:</strong> <span id="detailLocation"></span></p>
+    <h3>Current status</h3>
+    <div id="statusTimeline" class="status-timeline"></div>
   </section>
 
   <section id="new-complaint" class="two-col">
@@ -71,8 +82,14 @@
       <form id="complaintForm">
         <label>Complaint title<input id="title" required maxlength="100" placeholder="e.g. Street light not working"></label>
         <label>Choose a department<select id="departmentId" required><option value="">Loading departments…</option></select></label>
-        <label>Description<textarea id="description" required maxlength="1000" placeholder="Describe the problem and location."></textarea></label>
-
+        <label>Complaint location
+          <div class="location-picker">
+            <input id="location" required maxlength="250" placeholder="Search or enter a landmark, area, or address">
+            <button id="currentLocationButton" class="small-button" type="button">⌖ Use current location</button>
+          </div>
+          <small id="locationHint" class="muted">Enter the location manually, or let the browser use your current GPS location.</small>
+        </label>
+        <label>Description<textarea id="description" required maxlength="1000" placeholder="Describe the problem clearly."></textarea></label>
         <button class="primary" type="submit">Submit complaint</button>
       </form>
     </div>

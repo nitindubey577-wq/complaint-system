@@ -20,6 +20,10 @@ public class CreateComplaintRequest {
     @NotBlank(message = "Department is required")
     private String departmentId;
 
+    @NotBlank(message = "Location is required")
+    @Size(max = 250, message = "Location must be at most 250 characters")
+    private String location;
+
     public String getTitle() {
         return title;
     }
@@ -46,4 +50,7 @@ public class CreateComplaintRequest {
 
     public String getDepartmentId() { return departmentId; }
     public void setDepartmentId(String departmentId) { this.departmentId = departmentId; }
+
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
 }

@@ -72,6 +72,7 @@ public class ComplaintService {
 
         complaint.setTitle(request.getTitle());
         complaint.setDescription(request.getDescription());
+        complaint.setLocation(request.getLocation());
         complaint.setCategory(request.getCategory());
         complaint.setDepartmentId(request.getDepartmentId());
         complaint.setStatus(ComplaintStatus.PENDING);

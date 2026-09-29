@@ -5,6 +5,7 @@ public class Complaint {
     private String id;
     private String title;
     private String description;
+    private String location;
     private String category;
     private ComplaintStatus status;
     private String departmentId;
@@ -50,6 +51,9 @@ public class Complaint {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
 
     public String getCategory() {
         return category;

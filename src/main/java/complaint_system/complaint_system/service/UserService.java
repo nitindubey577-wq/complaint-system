@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -27,6 +28,15 @@ public class UserService {
         User user = new User(String.valueOf(nextId++), request.getName(), request.getEmail(), passwordEncoder.encode(request.getPassword()), request.getPhone(), request.getRole(), LocalDateTime.now());
         user.setDepartmentId(request.getDepartmentId());
         users.add(user); return user;
+    }
+    public User findOrCreateGoogleCitizen(String name, String email) {
+        User existing = findByEmail(email);
+        if (existing != null) return existing;
+        User user = new User(String.valueOf(nextId++), name, email,
+                passwordEncoder.encode(UUID.randomUUID().toString()), null,
+                UserRole.CITIZEN, LocalDateTime.now());
+        users.add(user);
+        return user;
     }
     public boolean delete(String id) { return users.removeIf(u -> u.getId().equals(id)); }
 }
